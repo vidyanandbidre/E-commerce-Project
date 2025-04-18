@@ -43,5 +43,99 @@ public class Credential {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+	public Integer getCredentialId() {
+		return credentialId;
+	}
+
+	public void setCredentialId(Integer credentialId) {
+		this.credentialId = credentialId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public RoleBasedAuthority getRoleBasedAuthority() {
+		return roleBasedAuthority;
+	}
+
+	public void setRoleBasedAuthority(RoleBasedAuthority roleBasedAuthority) {
+		this.roleBasedAuthority = roleBasedAuthority;
+	}
+
+	public Boolean getIsEnabled() {
+		return isEnabled;
+	}
+
+	public void setIsEnabled(Boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
+	public Boolean getIsAccountNonExpired() {
+		return isAccountNonExpired;
+	}
+
+	public void setIsAccountNonExpired(Boolean isAccountNonExpired) {
+		this.isAccountNonExpired = isAccountNonExpired;
+	}
+
+	public Boolean getIsAccountNonLocked() {
+		return isAccountNonLocked;
+	}
+
+	public void setIsAccountNonLocked(Boolean isAccountNonLocked) {
+		this.isAccountNonLocked = isAccountNonLocked;
+	}
+
+	public Boolean getIsCredentialsNonExpired() {
+		return isCredentialsNonExpired;
+	}
+
+	public void setIsCredentialsNonExpired(Boolean isCredentialsNonExpired) {
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Credential(Integer credentialId, String username, String password, RoleBasedAuthority roleBasedAuthority,
+			Boolean isEnabled, Boolean isAccountNonExpired, Boolean isAccountNonLocked, Boolean isCredentialsNonExpired,
+			User user) {
+		super();
+		this.credentialId = credentialId;
+		this.username = username;
+		this.password = password;
+		this.roleBasedAuthority = roleBasedAuthority;
+		this.isEnabled = isEnabled;
+		this.isAccountNonExpired = isAccountNonExpired;
+		this.isAccountNonLocked = isAccountNonLocked;
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+		this.user = user;
+	}
+
+	public Credential() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
 }
 

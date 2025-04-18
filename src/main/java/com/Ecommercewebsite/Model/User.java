@@ -3,43 +3,39 @@ package com.Ecommercewebsite.Model;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import lombok.*;
-
-
-
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
+
+	@NotBlank(message = "First name is required")
+	@Size(min = 2, max = 30, message = "First name must be between 2 and 30 characters")
 	private String firstName;
+
+	@NotBlank(message = "Last name is required")
+	@Size(min = 2, max = 30, message = "Last name must be between 2 and 30 characters")
 	private String lastName;
+
+	@NotBlank(message = "Email is required")
+	@Email(message = "Email should be valid")
 	private String email;
+
+	@NotBlank(message = "Phone number is required")
+	@Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
 	private String phone;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Address> addresses = new HashSet<>(); // ✅ Initialize to avoid null
+	private Set<Address> addresses = new HashSet<>(); // Initialize to avoid null
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Credential credential;
+
+	// Getters and Setters
 
 	public Integer getUserId() {
 		return userId;
@@ -97,9 +93,10 @@ public class User {
 		this.credential = credential;
 	}
 
+	// Constructors
+
 	public User(Integer userId, String firstName, String lastName, String email, String phone, Set<Address> addresses,
 			Credential credential) {
-		super();
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -110,10 +107,6 @@ public class User {
 	}
 
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+		// default constructor
 	}
-
-	
-	
 }
